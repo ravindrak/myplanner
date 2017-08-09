@@ -46,8 +46,30 @@ class User extends CI_Controller {
 
 	public function contacts(){
 		$userContacts 		=	$this->user_model->getAllContacts($this->session->userData('UID'));
-		print_r($userContacts);
+		//print_r($userContacts);
 		$this->load->view('user/contacts', $userContacts);
+	}
+
+	public function register(){
+		$this->load->view('user/register');	
+	}
+
+	public function registerNewIR(){
+		$data['ir_id'] 		=	$this->input->post('irid');
+		$data['password']	=	md5($this->input->post('password'));
+		$data['email'] 		=	$this->input->post('email');
+		$data['mobile']		=	$this->input->post('mobile');
+
+		$is_registered 			=	$this->user_model->insertNewUser($data);
+		
+		if($is_registered){
+			$this->session->set_userData('error','Please login using your credentials.');
+			redirect(base_url().'user/login');
+		}else{
+			$this->session->set_userData('error','Please check the data again.');
+			redirect(base_url().'user/register');	
+		}
+		
 	}
 }
 

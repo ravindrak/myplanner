@@ -28,6 +28,8 @@
 		<p>
 			<input type="submit" class="formInput btn btn-primary" value="Login">
 			<input type="Reset" class="formInput btn btn-primary" value="Reset">
+
+			<a href="<?php echo base_url();?>user/register"> IR Registration </a>
 		</p>
 	</div>
 </div>

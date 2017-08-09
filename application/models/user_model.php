@@ -34,6 +34,11 @@ class User_model extends CI_Model {
 		$this->db->from('myplans');
 		return $this->db->count_all_results();	
 	}
+
+	public function insertNewUser($data){
+		$query = $this->db->insert('users', $data);
+		return ($this->db->affected_rows() != 1) ? false : true;
+	}
 }
 
 /* End of file user_model.php */
